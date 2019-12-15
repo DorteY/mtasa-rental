@@ -8,6 +8,7 @@ RentalMarker=createMarker(-700,964,12,"cylinder",1.4,200,200,0,200,root)
 local rentVehicleTable={}
 local rentVehicleTimerTable={}
 
+--((Functions))
 function rentVehicle(typ,price)
 	if(isElementWithinMarker(client,RentalMarker))then
 		if(getPlayerMoney(client)>=price)then
