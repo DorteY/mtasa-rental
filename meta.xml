@@ -1,0 +1,6 @@
+<meta>
+	<info author="DorteY" type="script" version="0.1" />
+	
+	<script src="cRental.lua" type="client" cache="false" />
+	<script src="sRental.lua" type="server" />
+</meta>
