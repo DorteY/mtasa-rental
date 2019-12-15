@@ -21,8 +21,9 @@ function openRentalUI()
 			GUI.GridItem[1]=guiGridListAddColumn(GUI.Gridlist[1],"Vehicle",0.55)
 			GUI.GridItem[2]=guiGridListAddColumn(GUI.Gridlist[1],"Price",0.2)
 			
-			GUI.Label[1]=guiCreateLabel(180,25,240,30,"Here you can rent a vehicle for a limited\ntime.",false,GUI.Window[1])
-			GUI.Button[1]=guiCreateButton(180,215,200,35,"Rent vehicle",false,GUI.Window[1])
+			GUI.Button[1]=guiCreateButton(370,20,20,20,"x",false,GUI.Window[1])
+			GUI.Label[1]=guiCreateLabel(170,45,240,30,"Here you can rent a vehicle for a limited\ntime.",false,GUI.Window[1])
+			GUI.Button[2]=guiCreateButton(180,215,200,35,"Rent vehicle",false,GUI.Window[1])
 			
 			for _,v in pairs(rentalUIvehicles)do
 				local row=guiGridListAddRow(GUI.Gridlist[1])
@@ -31,7 +32,7 @@ function openRentalUI()
 			end
 			
 			
-			addEventHandler("onClientGUIClick",GUI.Button[1],
+			addEventHandler("onClientGUIClick",GUI.Button[2],
 				function(btn,state)
 					if(btn=="left" and state=="up")then
 						local selectedVeh=guiGridListGetItemText(GUI.Gridlist[1],guiGridListGetSelectedItem(GUI.Gridlist[1]),1)
@@ -44,6 +45,16 @@ function openRentalUI()
 									destroyElement(GUI.Window[1])
 								end
 							end
+						end
+					end
+				end,
+			false)
+			addEventHandler("onClientGUIClick",GUI.Button[1],
+				function(btn,state)
+					if(btn=="left" and state=="up")then
+						if(isElement(GUI.Window[1]))then
+							showCursor(false)
+							destroyElement(GUI.Window[1])
 						end
 					end
 				end,
