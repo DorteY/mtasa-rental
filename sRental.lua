@@ -12,27 +12,18 @@ function rentVehicle(typ,price)
 	if(isElementWithinMarker(client,RentalMarker))then
 		if(getPlayerMoney(client)>=price)then
 			if(typ and typ~=nil)then
+				local x,y,z=getElementPosition(client)
+				local rx,ry,rz=getElementRotation(client)
+				
+				if(isElement(rentVehicleTable[client]))then
+					destroyElement(rentVehicleTable[client])
+				end
+				if(isTimer(rentVehicleTimerTable[client]))then
+					killTimer(rentVehicleTimerTable[client])
+				end
 				if(typ=="Faggio")then
-					local x,y,z=getElementPosition(client)
-					local rx,ry,rz=getElementRotation(client)
-					
-					if(isElement(rentVehicleTable[client]))then
-						destroyElement(rentVehicleTable[client])
-					end
-					if(isTimer(rentVehicleTimerTable[client]))then
-						killTimer(rentVehicleTimerTable[client])
-					end
 					rentVehicleTable[client]=createVehicle(462,x,y,z,rx,ry,rz)
 				elseif(typ=="Tampa")then
-					local x,y,z=getElementPosition(client)
-					local rx,ry,rz=getElementRotation(client)
-					
-					if(isElement(rentVehicleTable[client]))then
-						destroyElement(rentVehicleTable[client])
-					end
-					if(isTimer(rentVehicleTimerTable[client]))then
-						killTimer(rentVehicleTimerTable[client])
-					end
 					rentVehicleTable[client]=createVehicle(549,x,y,z,rx,ry,rz)
 				end
 				
