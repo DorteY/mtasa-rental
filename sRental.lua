@@ -2,16 +2,16 @@
 --((File: sRental.lua))
 
 --((Marker))
-RentalMarker=createMarker(-700,964,12,"cylinder",1.4,200,200,0,200,root)
+local RentalMarker=createMarker(-700,964,12,"cylinder",1.4,200,200,0,200,root)
 
 --((Tables))
 local rentVehicleTable={}
 local rentVehicleTimerTable={}
 
 --((Functions))
-function rentVehicle(typ,price)
+function rentVehicle(typ)
 	if(isElementWithinMarker(client,RentalMarker))then
-		if(getPlayerMoney(client)>=price)then
+		if(getPlayerMoney(client)>=rentalUIvehicles[typ])then--You can change that to example: if(getElementData(client,"Money")>=price)then
 			if(typ and typ~=nil)then
 				local x,y,z=getElementPosition(client)
 				local rx,ry,rz=getElementRotation(client)
@@ -35,12 +35,14 @@ function rentVehicle(typ,price)
 					if(isTimer(rentVehicleTimerTable[client]))then
 						killTimer(rentVehicleTimerTable[client])
 					end
-				end,20*1000,1,client)
+					rentVehicleTimerTable[client]=nil
+					outputChatBox("You vehicle was destroyed!",client,200,0,0)
+				end,20*60*1000,1,client)
 				
-				setPlayerMoney(client,getPlayerMoney(client)-price)
+				setPlayerMoney(client,getPlayerMoney(client)-rentalUIvehicles[typ])
 			end
 		else
-			outputChatBox("You don't have enough money! ($"..price..")",client,200,0,0)
+			outputChatBox("You don't have enough money! ($"..rentalUIvehicles[typ]..")",client,200,0,0)
 		end
 	end
 end

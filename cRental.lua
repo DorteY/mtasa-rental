@@ -4,11 +4,6 @@
 local x,y=guiGetScreenSize()
 local GUI={Window={},Button={},Label={},Gridlist={},GridItem={}}
 
-local rentalUIvehicles={
-	{"Faggio",150},
-	{"Tampa",300},
-}
-
 function openRentalUI()
 	if(not isPedInVehicle(localPlayer))then
 		if(not isElement(GUI.Window[1]))then
@@ -25,10 +20,10 @@ function openRentalUI()
 			GUI.Label[1]=guiCreateLabel(170,45,240,30,"Here you can rent a vehicle for a limited\ntime.",false,GUI.Window[1])
 			GUI.Button[2]=guiCreateButton(180,215,200,35,"Rent vehicle",false,GUI.Window[1])
 			
-			for _,v in pairs(rentalUIvehicles)do
+			for i,v in pairs(rentalUIvehicles)do
 				local row=guiGridListAddRow(GUI.Gridlist[1])
-				guiGridListSetItemText(GUI.Gridlist[1],row,GUI.GridItem[1],v[1],false,false)
-				guiGridListSetItemText(GUI.Gridlist[1],row,GUI.GridItem[2],v[2],false,false)
+				guiGridListSetItemText(GUI.Gridlist[1],row,GUI.GridItem[1],i,false,false)
+				guiGridListSetItemText(GUI.Gridlist[1],row,GUI.GridItem[2],v,false,false)
 			end
 			
 			
